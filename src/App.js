@@ -2,40 +2,55 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import CitySelect from './components/CitySelect';
+import CityForecast from './components/CityForecast';
 import weatherService from './services/weather';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
 
 const App = () => {
   const [data, setData] = useState({});
+  const [currentData, setCurrentData] = useState({});
 
   useEffect(() => {
-    weatherService.getWeather().then(data => setData(data));
+    weatherService.getWeatherForecast().then(data => setData(data));
+    weatherService.getWeather().then(data => setCurrentData(data));
   }, []);
 
-  console.log(data);
   if (!data.city) return <h2>Loading...</h2>;
 
+  console.log(currentData);
+
   return (
-    <>
-      <Container>
-        <h1 className="text-center p-3">Säätutka</h1>
-        <CitySelect />
-        {data.list.slice(0, 5).map(forecast => {
-          return <CityForecast data={forecast} />;
+    <Container>
+      <h1 className="text-center p-3">Säätutka</h1>
+      <CitySelect />
+      <CityWeather />
+      <Row>
+        {data.list.map(forecast => {
+          return (
+            <Col key={forecast.dt}>
+              <CityForecast data={forecast} />
+            </Col>
+          );
         })}
-      </Container>
-    </>
+      </Row>
+    </Container>
   );
 };
 
-const CityForecast = ({ data }) => {
-  console.log();
-
+const CityWeather = () => {
   return (
-    <>
-      {data.dt_txt}
-      <p></p>
-      {data.main.temp}
-    </>
+    <Card style={{ borderColor: '#E6E6E6' }} className="text-center p-2 mb-2">
+      <Row>
+        <Col>asd</Col>
+        <Col>asd</Col>
+      </Row>
+      <Row>
+        <Col>asd</Col>
+        <Col>asd</Col>
+      </Row>
+    </Card>
   );
 };
 

@@ -4,7 +4,10 @@ import Form from 'react-bootstrap/Form';
 const CitySelect = () => (
   <Form>
     <Form.Group controlId="exampleForm.ControlSelect1">
-      <Form.Control as="select">
+      <Form.Control
+        style={{ fontSize: '13px', color: '#262626', borderColor: '#E6E6E6' }}
+        as="select"
+      >
         <option>Kaikki kaupungit</option>
         <option>Helsinki</option>
         <option>Jyväskylä</option>
