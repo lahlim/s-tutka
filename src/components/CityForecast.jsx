@@ -1,9 +1,7 @@
 import React from 'react';
 
 const CityForecast = ({ data }) => {
-  console.log(data);
-
-  const kelvinToCelcius = temp => temp - 273.15;
+  const kelvinToCelcius = temp => Math.round(temp - 273.15);
   const formatTime = date => {
     const split = date.split(' ')[1].split(':');
     return split[0] + ':' + split[1];
@@ -29,9 +27,7 @@ const CityForecast = ({ data }) => {
         <div>
           <p style={{ height: '15px' }}>{formatTime(data.dt_txt)}</p>
           <img src={iconUrl} alt="Weather icon"></img>
-          <p style={{ height: '13px' }}>
-            {Math.round(kelvinToCelcius(data.main.temp))}°C
-          </p>
+          <p style={{ height: '13px' }}>{kelvinToCelcius(data.main.temp)}°C</p>
         </div>
         <div
           style={{

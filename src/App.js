@@ -17,7 +17,7 @@ const App = () => {
     weatherService.getWeather().then(data => setCurrentData(data));
   }, []);
 
-  if (!data.city) return <h2>Loading...</h2>;
+  if (!data.city || !currentData.name) return <h2>Loading...</h2>;
 
   console.log(currentData);
 
@@ -25,7 +25,7 @@ const App = () => {
     <Container>
       <h1 className="text-center p-3">Säätutka</h1>
       <CitySelect />
-      <CityWeather />
+      <CityWeather data={currentData} />
       <Row>
         {data.list.map(forecast => {
           return (
@@ -39,15 +39,37 @@ const App = () => {
   );
 };
 
-const CityWeather = () => {
+const CityWeather = ({ data }) => {
+  const kelvinToCelcius = temp => Math.round(temp - 273.15);
+  const iconUrl = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+  const date = new Date();
+  const dateToShow = date.toLocaleDateString('en-EN', {
+    month: 'short',
+    day: 'numeric'
+  });
+  const time = date
+    .toLocaleDateString('fi-FI', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+    .replace('.', ':');
+  console.log(dateToShow);
   return (
     <Card style={{ borderColor: '#E6E6E6' }} className="text-center p-2 mb-2">
       <Row>
-        <Col>asd</Col>
-        <Col>asd</Col>
+        <Col>
+          <h2>{data.name}</h2>
+          <p>{data.weather[0].description}</p>
+        </Col>
+        <Col>
+          <img src={iconUrl} alt="Weather icon"></img>
+          <p style={{ height: '13px' }}>{kelvinToCelcius(data.main.temp)}°C</p>
+        </Col>
       </Row>
       <Row>
-        <Col>asd</Col>
+        <Col>
+          {dateToShow} {time}
+        </Col>
         <Col>asd</Col>
       </Row>
     </Card>
