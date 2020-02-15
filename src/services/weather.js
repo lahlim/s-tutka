@@ -7,9 +7,11 @@ const getWeatherForecast = () => {
   return request.then(response => response.data);
 };
 
-const getWeather = () => {
+const getWeather = id => {
+  console.log(id);
+
   const request = axios.get(
-    'http://api.openweathermap.org/data/2.5/weather/?id=634964&APIKEY=9baeaf613a5f530b584aef82691010d3'
+    `http://api.openweathermap.org/data/2.5/weather/?id=${id}&APIKEY=9baeaf613a5f530b584aef82691010d3`
   );
   return request.then(response => response.data);
 };

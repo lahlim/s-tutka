@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import weatherService from '../services/weather';
 
-const CityForecast = ({ data }) => {
+const CityForecast = ({ id }) => {
+  const [data, setData] = useState({});
+  useEffect(() => {
+    weatherService.getWeatherForecast().then(data => setData(data));
+  }, []);
   const kelvinToCelcius = temp => Math.round(temp - 273.15);
   const formatTime = date => {
     const split = date.split(' ')[1].split(':');
     return split[0] + ':' + split[1];
   };
   let rain = 0;
-  if (data.snow) rain = data.snow;
-  if (data.rain) rain = data.rain;
+  if (data.snow) rain = data.snow['3h'];
+  if (data.rain) rain = data.rain['3h'];
 
   const iconUrl = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
 
