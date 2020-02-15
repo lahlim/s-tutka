@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import weatherService from '../services/weather';
+import React from 'react';
 
-const CityForecast = ({ id }) => {
-  const [data, setData] = useState({});
-  useEffect(() => {
-    weatherService.getWeatherForecast().then(data => setData(data));
-  }, []);
+const CityForecast = ({ data }) => {
   const kelvinToCelcius = temp => Math.round(temp - 273.15);
   const formatTime = date => {
     const split = date.split(' ')[1].split(':');

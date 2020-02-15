@@ -19,25 +19,37 @@ const App = () => {
 };
 
 const AllCities = () => {
-  //const [currentData, setCurrentData] = useState({});
-
-  if (!data.city) return <h2>Loading...</h2>;
   return (
     <>
       <CitySelect />
       {cityIdArray.map(cityId => {
-        return <CityWeather id={cityId} />;
+        return (
+          <div className="mb-4" key={cityId}>
+            <CityWeather id={cityId} />
+            <CityForecasts id={cityId} />
+          </div>
+        );
       })}
-      <Row className="p-2">
-        {data.list.slice(0, 5).map(forecast => {
-          return (
-            <Col key={forecast.dt} className="p-1">
-              <CityForecast data={forecast} />
-            </Col>
-          );
-        })}
-      </Row>
     </>
+  );
+};
+
+const CityForecasts = ({ id }) => {
+  const [data, setData] = useState({});
+  useEffect(() => {
+    weatherService.getWeatherForecast(id).then(data => setData(data));
+  }, [id]);
+  if (!data.city) return <h2>Loading...</h2>;
+  return (
+    <Row>
+      {data.list.slice(1, 6).map(forecast => {
+        return (
+          <Col key={forecast.dt}>
+            <CityForecast data={forecast} />
+          </Col>
+        );
+      })}
+    </Row>
   );
 };
 

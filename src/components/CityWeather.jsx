@@ -10,6 +10,7 @@ const CityWeather = ({ id }) => {
     weatherService.getWeather(id).then(data => setData(data));
   }, [id]);
   if (!data.name) return <h2>loading...</h2>;
+  console.log(data);
 
   //  Conver the unit of temp to °C
   const kelvinToCelcius = temp => Math.round(temp - 273.15);
@@ -41,15 +42,15 @@ const CityWeather = ({ id }) => {
   time = time[2].replace('.', ':');
 
   let rain = 0;
-  if (data.snow) rain = data.snow['3h'];
-  if (data.rain) rain = data.rain['3h'];
+  if (data.snow) rain = data.snow['1h'];
+  if (data.rain) rain = data.rain['1h'];
   const weatherDescription = data.weather[0].description.replace(
     data.weather[0].description[0],
     data.weather[0].description[0].toUpperCase()
   );
   return (
     <Card style={{ borderColor: '#E6E6E6' }} className=" p-2 mb-2">
-      <Row className="p-2">
+      <Row>
         <Col>
           <p style={{ color: '#262626', fontSize: '19px', margin: '0px' }}>
             {data.name}
@@ -75,8 +76,8 @@ const CityWeather = ({ id }) => {
           </p>
         </Col>
       </Row>
-      <Row className="p-2">
-        <Col style={{ listStyleType: 'none' }}>
+      <Row>
+        <Col style={{ listStyleType: 'none', margin: '0px' }}>
           <li style={{ fontSize: '15px', color: '#262626' }}>{dateToShow}</li>
           <li style={{ fontSize: '13px', color: ' #70757A' }}>{time}</li>
         </Col>
@@ -94,7 +95,7 @@ const CityWeather = ({ id }) => {
           <li>Wind: {data.wind.speed} m/s</li>
 
           <li>Humidity: {data.main.humidity} %</li>
-          <li>Precipitation (3 h): {rain} mm TOIMIIKO?</li>
+          <li>Precipitation (1 h): {rain} mm </li>
         </Col>
       </Row>
     </Card>
