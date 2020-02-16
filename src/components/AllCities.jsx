@@ -3,10 +3,13 @@ import CityWeather from './CityWeather';
 import cityIdArray from '../cityId';
 import CityForecasts from './CityForecasts';
 
-const AllCities = () => {
+const AllCities = ({ filter, loading, setLoading }) => {
+  let citysToShow = cityIdArray.filter(id => id === Number(filter));
+  if (Number(filter) === 0) citysToShow = cityIdArray;
+
   return (
     <>
-      {cityIdArray.map(cityId => {
+      {citysToShow.map(cityId => {
         return (
           <div className="mb-4" key={cityId}>
             <CityWeather id={cityId} />

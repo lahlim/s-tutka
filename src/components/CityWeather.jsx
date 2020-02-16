@@ -81,7 +81,7 @@ const CityWeather = ({ id }) => {
         </Col>
       </Row>
       <Row>
-        <Col style={{ listStyleType: 'none', margin: '0px' }}>
+        <Col className="sm" style={{ listStyleType: 'none', margin: '0px' }}>
           <li style={{ fontSize: '15px', color: '#262626' }}>{dateToShow}</li>
           <li style={{ fontSize: '13px', color: ' #70757A' }}>{time}</li>
         </Col>

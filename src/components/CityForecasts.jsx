@@ -9,12 +9,14 @@ const CityForecasts = ({ id }) => {
   useEffect(() => {
     weatherService.getWeatherForecast(id, 6).then(data => setData(data));
   }, [id]);
-  if (!data.city) return <div></div>;
+  if (!data.city) {
+    return <div></div>;
+  }
   return (
-    <Row>
+    <Row style={{ margin: '-3px' }}>
       {data.list.slice(1, 6).map(forecast => {
         return (
-          <Col key={forecast.dt}>
+          <Col key={forecast.dt} style={{ margin: '3px', padding: '0px' }}>
             <CityForecast data={forecast} />
           </Col>
         );

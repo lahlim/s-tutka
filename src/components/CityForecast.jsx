@@ -25,9 +25,11 @@ const CityForecast = ({ data }) => {
         className="text-center"
       >
         <div style={{ backgroundColor: '#FFFFFF' }}>
-          <p style={{ height: '15px' }}>{formatTime(data.dt_txt)}</p>
+          <p style={{ fontSize: '15px' }}>{formatTime(data.dt_txt)}</p>
           <img src={iconUrl} alt="Weather icon"></img>
-          <p style={{ height: '13px' }}>{kelvinToCelcius(data.main.temp)}°C</p>
+          <p style={{ fontSize: '13px', margin: '0px', padding: '2px' }}>
+            {kelvinToCelcius(data.main.temp)}°C
+          </p>
         </div>
         <div
           style={{
