@@ -24,7 +24,7 @@ const CityForecast = ({ data }) => {
         }}
         className="text-center"
       >
-        <div>
+        <div style={{ backgroundColor: '#FFFFFF' }}>
           <p style={{ height: '15px' }}>{formatTime(data.dt_txt)}</p>
           <img src={iconUrl} alt="Weather icon"></img>
           <p style={{ height: '13px' }}>{kelvinToCelcius(data.main.temp)}°C</p>

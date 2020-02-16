@@ -6,11 +6,15 @@ import weatherService from '../services/weather';
 
 const CityWeather = ({ id }) => {
   const [data, setData] = useState({});
+  const [forecastData, setForecastData] = useState({});
   useEffect(() => {
     weatherService.getWeather(id).then(data => setData(data));
+    weatherService
+      .getWeatherForecast(id, 1)
+      .then(data => setForecastData(data.list[0]));
   }, [id]);
-  if (!data.name) return <h2>loading...</h2>;
-  console.log(data);
+
+  if (!data.name) return <div></div>;
 
   //  Conver the unit of temp to °C
   const kelvinToCelcius = temp => Math.round(temp - 273.15);
@@ -42,8 +46,8 @@ const CityWeather = ({ id }) => {
   time = time[2].replace('.', ':');
 
   let rain = 0;
-  if (data.snow) rain = data.snow['1h'];
-  if (data.rain) rain = data.rain['1h'];
+  if (forecastData.snow) rain = forecastData.snow['3h'];
+  if (forecastData.rain) rain = forecastData.rain['3h'];
   const weatherDescription = data.weather[0].description.replace(
     data.weather[0].description[0],
     data.weather[0].description[0].toUpperCase()
@@ -95,7 +99,7 @@ const CityWeather = ({ id }) => {
           <li>Wind: {data.wind.speed} m/s</li>
 
           <li>Humidity: {data.main.humidity} %</li>
-          <li>Precipitation (1 h): {rain} mm </li>
+          <li>Precipitation (3 h): {rain} mm </li>
         </Col>
       </Row>
     </Card>

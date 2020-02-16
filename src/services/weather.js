@@ -1,17 +1,31 @@
 import axios from 'axios';
 
-const getWeatherForecast = id => {
-  const request = axios.get(
-    `http://api.openweathermap.org/data/2.5/forecast?id=${id}&cnt=6&APIKEY=9baeaf613a5f530b584aef82691010d3`
-  );
-  return request.then(response => response.data);
+// Insert your api key here or to .env file in project root.
+const APIKEY = process.env.REACT_APP_API_KEY;
+
+const getWeatherForecast = (id, count) => {
+  try {
+    const request = axios.get(
+      `http://api.openweathermap.org/data/2.5/forecast?id=${id}&cnt=${count}&APIKEY=${APIKEY}`
+    );
+    return request.then(response => response.data);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getWeather = id => {
-  const request = axios.get(
-    `http://api.openweathermap.org/data/2.5/weather/?id=${id}&APIKEY=9baeaf613a5f530b584aef82691010d3`
-  );
-  return request.then(response => response.data);
+  try {
+    const request = axios.get(
+      `http://api.openweathermap.org/data/2.5/weather/?id=${id}&APIKEY=${APIKEY}`
+    );
+    console.log(
+      `http://api.openweathermap.org/data/2.5/weather/?id=${id}&APIKEY=${APIKEY}`
+    );
+    return request.then(response => response.data);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default { getWeather, getWeatherForecast };
