@@ -36,7 +36,8 @@ const CityForecast = ({ data }) => {
             backgroundColor: '#E5F6FD',
             listStyleType: 'none',
             fontSize: '10px',
-            color: ' #70757A'
+            color: ' #70757A',
+            padding: '4px'
           }}
         >
           <li>{data.wind.speed}m/s</li>

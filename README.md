@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# WeatherRadar
+
+This aplication will show weather data from couple of Finnish citys.
 
 ## Available Scripts
 
@@ -14,4 +16,5 @@ You will also see any lint errors in the console.
 
 ### How to run the app
 
-To get the app running you need to insert your APIKEY from openweathermap.org to src/services/weather.js or you can use .env file.
+- To get the app running you need to insert your APIKEY from openweathermap.org to src/services/weather.js or you can use .env file.
+- Clone the repo and run `npm install` and then `npm start`

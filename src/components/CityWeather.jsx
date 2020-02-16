@@ -7,6 +7,8 @@ import weatherService from '../services/weather';
 const CityWeather = ({ id }) => {
   const [data, setData] = useState({});
   const [forecastData, setForecastData] = useState({});
+
+  // Current weather fetch and forecast for rain
   useEffect(() => {
     weatherService.getWeather(id).then(data => setData(data));
     weatherService
@@ -37,6 +39,7 @@ const CityWeather = ({ id }) => {
     })
   );
 
+  // Parse time to proper format
   let time = date
     .toLocaleDateString('fi-FI', {
       hour: 'numeric',
@@ -45,6 +48,7 @@ const CityWeather = ({ id }) => {
     .split(' ');
   time = time[2].replace('.', ':');
 
+  // Set rain values
   let rain = 0;
   if (forecastData.snow) rain = forecastData.snow['3h'];
   if (forecastData.rain) rain = forecastData.rain['3h'];
@@ -52,6 +56,9 @@ const CityWeather = ({ id }) => {
     data.weather[0].description[0],
     data.weather[0].description[0].toUpperCase()
   );
+
+  // Fix the character encoding issue
+  if (data.name === 'Jyvaeskylae') data.name = 'Jyväskylä';
   return (
     <Card style={{ borderColor: '#E6E6E6' }} className=" p-2 mb-2">
       <Row>
@@ -81,7 +88,7 @@ const CityWeather = ({ id }) => {
         </Col>
       </Row>
       <Row>
-        <Col className="sm" style={{ listStyleType: 'none', margin: '0px' }}>
+        <Col xs={4} style={{ listStyleType: 'none', margin: '0px' }}>
           <li style={{ fontSize: '15px', color: '#262626' }}>{dateToShow}</li>
           <li style={{ fontSize: '13px', color: ' #70757A' }}>{time}</li>
         </Col>

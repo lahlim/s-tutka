@@ -7,13 +7,17 @@ const App = () => {
   const [filter, setFilter] = useState(0);
 
   return (
-    <div style={{ backgroundColor: '#F8F9FA' }}>
-      <Container>
-        <h1 className="text-center p-3">Säätutka</h1>
-        <CitySelect setFilter={setFilter} />
-        <AllCities filter={filter} />
-      </Container>
-    </div>
+    <>
+      <div className="text-center p-3 " style={{ backgroundColor: '#FFFFFF' }}>
+        <h1 style={{ color: ' #26262', fontSize: '23px' }}>Säätutka</h1>
+      </div>
+      <div className="pt-3">
+        <Container>
+          <CitySelect setFilter={setFilter} />
+          <AllCities filter={filter} />
+        </Container>
+      </div>
+    </>
   );
 };
 
