@@ -3,7 +3,7 @@ import CityWeather from './CityWeather';
 import cityIdArray from '../cityId';
 import CityForecasts from './CityForecasts';
 
-const AllCities = ({ filter, loading, setLoading }) => {
+const AllCities = ({ filter }) => {
   // Filter selected city or all cities
   let citysToShow = cityIdArray.filter(id => id === Number(filter));
   if (Number(filter) === 0) citysToShow = cityIdArray;

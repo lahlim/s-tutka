@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 // Insert your api key here or to .env file in project root.
+// eslint-disable-next-line no-undef
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 // Get forecast of weather with 3h interval
