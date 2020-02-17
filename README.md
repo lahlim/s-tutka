@@ -8,8 +8,6 @@ This aplication will show weather data from couple of Finnish citys.
 
 Run chrome on your phone and you can add this progressive web app to your homescreen and run it like a native app!
 
-You Can tes this app
-
 ## Available Scripts
 
 In the project directory, you can run:
